@@ -1,0 +1,19 @@
+development:
+  adapter: postgresql
+  database: health_development
+  host: localhost
+  user: healthuser
+  password: 'WQh_T%Y@^7j2dkx-5'
+test:
+  adapter: postgresql
+  database: health_test
+  host: localhost
+  user: healthuser
+  password: 'WQh_T%Y@^7j2dkx-5'
+
+production:
+  adapter: postgresql
+  database: health
+  host: localhost
+  user: healthuser
+  password: 'ADSRytq+wEwer54*(0'
