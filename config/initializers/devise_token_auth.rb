@@ -27,7 +27,7 @@ DeviseTokenAuth.setup do |config|
   # Uncomment to enforce current_password param to be checked before all
   # attribute updates. Set it to :password if you want it to be checked only if
   # password is updated.
-  # config.check_current_password_before_update = :attributes
+  config.check_current_password_before_update = :password
 
   # By default, only Bearer Token authentication is implemented out of the box.
   # If, however, you wish to integrate with legacy Devise authentication, you can
@@ -44,6 +44,20 @@ DeviseTokenAuth::PasswordsController.class_eval do
           message: I18n.t("devise_token_auth.passwords.successfully_updated")
         }
       }
+    end
+
+    def render_update_error_unauthorized
+      render json: {
+        success: false,
+        errors: ['Вы не авторизованны']
+      }, status: 401
+    end
+
+    def render_update_error
+      render json: {
+        success: false,
+        full_messages: @resource.errors.full_messages[0]
+      }, status: 422
     end
 end
 
@@ -69,11 +83,36 @@ DeviseTokenAuth::RegistrationsController.class_eval do
       }
     end
 
+    def account_update_params
+      params.permit([:name, :id_avatar, :rating, :weight, :growth, :password, :current_password])
+    end
+
     def render_create_error
       render json: {
         status: 'error',
         full_messages: @resource.errors.full_messages[0]
       }, status: 403
     end
+    def render_update_error
+      render json: {
+        status: 'error',
+        full_messages: @resource.errors.full_messages[0]
+      }, status: 403
+    end
+end
 
+
+DeviseTokenAuth::SessionsController.class_eval do
+    def render_create_success
+      render json: {
+        data: {
+          name:   @resource.name,
+          email:  @resource.email,
+          avatar: @resource.id_avatar,
+          rating: @resource.rating,
+          weight: @resource.weight,
+          growth: @resource.growth
+        }
+      }
+    end
 end

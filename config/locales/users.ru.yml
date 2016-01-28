@@ -9,6 +9,8 @@ ru:
         weight: Вес
         growth: Рост
         rating: Рейтинг
+        password_confirmation: "Поле 'Повторите пароль'"
+        current_password: 'Текущий пароль'
     errors:
       messages:
         record_invalid: 'Возникли ошибки: %{errors}'
@@ -136,6 +138,7 @@ ru:
   errors:
     format: "%{attribute} %{message}"
     messages:
+      validate_account_update_params: 'Параметры не заданы или некорректны'
       accepted: нужно подтвердить
       blank: не может быть пустым
       present: нужно оставить пустым

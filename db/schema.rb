@@ -28,9 +28,9 @@ ActiveRecord::Schema.define(version: 20160127121403) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "name"
-    t.integer  "rating"
-    t.integer  "weight"
-    t.integer  "growth"
+    t.integer  "rating",                 default: 0
+    t.integer  "weight",                 default: 0
+    t.integer  "growth",                 default: 0
     t.integer  "id_avatar"
     t.string   "email"
     t.text     "tokens"

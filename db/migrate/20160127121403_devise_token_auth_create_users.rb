@@ -35,9 +35,9 @@ class DeviseTokenAuthCreateUsers < ActiveRecord::Migration
 
       ## User Info
       t.string :name
-      t.integer :rating
-      t.integer :weight
-      t.integer :growth
+      t.integer :rating, :default => 0
+      t.integer :weight, :default => 0
+      t.integer :growth, :default => 0
       t.integer :id_avatar
       t.string :email
 
