@@ -25,8 +25,7 @@ module Health
         g.helper = false
     end
     I18n.enforce_available_locales = false
-    I18n.load_path += Dir[Rails.root.join('lib', 'locale', '*.{rb,yml}')]
- 
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
     # Set default locale to something other than :en
     I18n.default_locale = :ru
     config.autoload_paths += %W(\#{config.root}/lib)

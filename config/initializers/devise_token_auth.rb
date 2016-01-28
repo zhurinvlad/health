@@ -46,3 +46,34 @@ DeviseTokenAuth::PasswordsController.class_eval do
       }
     end
 end
+
+DeviseTokenAuth::RegistrationsController.class_eval do
+    def render_create_success
+      render_user_as_json
+    end
+    def render_update_success
+      render_user_as_json
+    end
+
+    def render_user_as_json
+      render json: {
+        status: 'success',
+        data: {
+          name:   @resource.name,
+          email:  @resource.email,
+          avatar: @resource.id_avatar,
+          rating: @resource.rating,
+          weight: @resource.weight,
+          growth: @resource.growth
+        }
+      }
+    end
+
+    def render_create_error
+      render json: {
+        status: 'error',
+        full_messages: @resource.errors.full_messages[0]
+      }, status: 403
+    end
+
+end
