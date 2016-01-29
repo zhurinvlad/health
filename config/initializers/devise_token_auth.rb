@@ -35,6 +35,44 @@ DeviseTokenAuth.setup do |config|
 end
 DeviseTokenAuth::PasswordsController.class_eval do
 
+    def create
+      unless resource_params[:email]
+        return render_create_error_missing_email
+      end
+      # honor devise configuration for case_insensitive_keys
+      if resource_class.case_insensitive_keys.include?(:email)
+        @email = resource_params[:email].downcase
+      else
+        @email = resource_params[:email]
+      end
+
+      q = "uid = ? AND provider='email'"
+
+      @resource = resource_class.where(q, @email).first
+
+      @errors = nil
+      @error_status = 400
+
+      if @resource
+        yield if block_given?
+          pass = Devise.friendly_token.first(8)
+          @resource.update_attributes( { :password => pass, :password_confirmation => pass })
+          UserMailer.password_reset(@resource, pass).deliver
+
+        if @resource.errors.empty?
+          return render_create_success
+        else
+          @errors = @resource.errors
+        end
+      else
+        @errors = [I18n.t("devise_token_auth.passwords.user_not_found", email: @email)]
+        @error_status = 404
+      end
+
+      if @errors
+        return render_create_error
+      end
+    end
     def render_update_success
       render json: {
         success: true,
