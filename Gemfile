@@ -26,6 +26,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise_token_auth', '0.1.37'
 gem 'omniauth', '1.3.1'
 gem 'pg', '0.18.4'
+gem 'carrierwave', '0.10.0'
 # Use Unicorn as the app server
 # gem 'unicorn'
 gem "mail", "2.6.3"
