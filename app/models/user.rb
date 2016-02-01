@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
            :omniauthable
 
   validates :weight,:rating,:growth, allow_blank: true, numericality: true
+  belongs_to :avatar, :dependent => :destroy
+
 
   include DeviseTokenAuth::Concerns::User
 

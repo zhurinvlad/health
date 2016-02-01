@@ -1,0 +1,1 @@
+json.extract! @avatar, :id, :name, :sex, :head_id, :body_id

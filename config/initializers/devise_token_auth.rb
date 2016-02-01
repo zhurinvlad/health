@@ -113,7 +113,7 @@ DeviseTokenAuth::RegistrationsController.class_eval do
         data: {
           name:   @resource.name,
           email:  @resource.email,
-          avatar: @resource.id_avatar,
+          avatar: @resource.avatar_id,
           rating: @resource.rating,
           weight: @resource.weight,
           growth: @resource.growth
@@ -122,7 +122,7 @@ DeviseTokenAuth::RegistrationsController.class_eval do
     end
 
     def account_update_params
-      params.permit([:name, :id_avatar, :rating, :weight, :growth, :password, :current_password])
+      params.permit([:name, :avatar_id, :rating, :weight, :growth, :password, :current_password])
     end
 
     def render_create_error
@@ -146,7 +146,7 @@ DeviseTokenAuth::SessionsController.class_eval do
         data: {
           name:   @resource.name,
           email:  @resource.email,
-          avatar: @resource.id_avatar,
+          avatar: @resource.avatar_id,
           rating: @resource.rating,
           weight: @resource.weight,
           growth: @resource.growth

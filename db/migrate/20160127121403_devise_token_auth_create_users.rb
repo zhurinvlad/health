@@ -38,7 +38,7 @@ class DeviseTokenAuthCreateUsers < ActiveRecord::Migration
       t.integer :rating, :default => 0
       t.integer :weight, :default => 0
       t.integer :growth, :default => 0
-      t.integer :id_avatar
+      t.belongs_to :avatar, index: true
       t.string :email
 
       ## Tokens

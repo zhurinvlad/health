@@ -1,22 +1,27 @@
 class AvatarsController < ApplicationController
   before_action :set_avatar, only: [:show, :edit, :update, :destroy]
-
+  before_filter :authenticate_user!
   # POST /avatars
   # POST /avatars.json
   def create
-    @avatar = Avatar.new(avatar_params)
+    @user = current_user
+    if @user.avatar.nil?
+      @avatar = @user.create_avatar(avatar_params)
 
-    respond_to do |format|
-      if @avatar.save
-        format.json { render :show, status: :created, location: @avatar }
-      else
-        format.json { render json: @avatar.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @avatar.save
+          format.json { render :show, status: :created, location: @avatar }
+        else
+          format.json { render json: @avatar.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      return render json: { error: 'У пользователя уже существует аватар' }, status: 403
     end
   end
 
-  # PATCH/PUT /avatars/1
-  # PATCH/PUT /avatars/1.json
+  # PATCH/PUT /avatars/
+  # PATCH/PUT /avatars/.json
   def update
     respond_to do |format|
       if @avatar.update(avatar_params)
@@ -27,8 +32,8 @@ class AvatarsController < ApplicationController
     end
   end
 
-  # DELETE /avatars/1
-  # DELETE /avatars/1.json
+  # DELETE /avatars/
+  # DELETE /avatars/.json
   def destroy
     @avatar.destroy
     respond_to do |format|
@@ -39,7 +44,8 @@ class AvatarsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_avatar
-      @avatar = Avatar.find(params[:id])
+      @user = current_user
+      @avatar = Avatar.find(@user.avatar)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
