@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
 
-  resources :bodies
-  resources :heads
   scope 'api/v1' do
-    mount_devise_token_auth_for 'User', at: 'auth', :except => [:get]
-    resource :avatar
+    mount_devise_token_auth_for 'User', at: 'auth', skip: [:omniauth_callbacks]
+    # Recreates the Devise registrations routes
+    # They act on a singular user (the signed in user)
+    # Add the actions you want in 'only:'
+    
+    resource :avatar, only: [:create, :update, :destroy]
+    resources :bodies, only: [:index]
+    resources :heads, only: [:index]
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
