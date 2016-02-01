@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
 
-
-  mount_devise_token_auth_for 'User', at: 'auth'
-
-
+  resources :avatars
+  scope 'api/v1' do
+    mount_devise_token_auth_for 'User', at: 'auth', :except => [:get]
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
