@@ -1,5 +1,5 @@
 class AvatarsController < ApplicationController
-  before_action :set_avatar, only: [:show, :edit, :update, :destroy]
+  before_action :set_avatar, only: [:update, :destroy]
   before_filter :authenticate_user!
   # POST /avatars
   # POST /avatars.json
