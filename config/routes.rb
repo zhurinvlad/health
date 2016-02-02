@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   scope 'api/v1' do
     mount_devise_token_auth_for 'User', at: 'auth', skip: [:omniauth_callbacks]
     # Recreates the Devise registrations routes

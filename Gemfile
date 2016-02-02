@@ -27,6 +27,7 @@ gem 'devise_token_auth', '0.1.37'
 gem 'omniauth', '1.3.1'
 gem 'pg', '0.18.4'
 gem 'carrierwave', '0.10.0'
+gem 'activeadmin', github: 'activeadmin'
 # Use Unicorn as the app server
 # gem 'unicorn'
 gem "mail", "2.6.3"
