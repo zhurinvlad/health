@@ -5,6 +5,7 @@ class HeadsController < Api::ApplicationController
   # GET /heads.json
   def index
     @heads = Head.all
+    return  render json: @heads.to_json(only: [:id, :image])
   end
 
   # GET /heads/1

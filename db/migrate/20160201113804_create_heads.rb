@@ -1,7 +1,7 @@
 class CreateHeads < ActiveRecord::Migration
   def change
     create_table :heads do |t|
-      t.json :image
+      t.string :image
 
       t.timestamps null: false
     end

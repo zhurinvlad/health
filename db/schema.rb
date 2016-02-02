@@ -59,13 +59,13 @@ ActiveRecord::Schema.define(version: 20160202070108) do
   end
 
   create_table "bodies", force: :cascade do |t|
-    t.json     "image"
+    t.string   "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "heads", force: :cascade do |t|
-    t.json     "image"
+    t.string   "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

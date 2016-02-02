@@ -5,6 +5,7 @@ class BodiesController < Api::ApplicationController
   # GET /bodies.json
   def index
     @bodies = Body.all
+    return  render json: @bodies.to_json(only: [:id, :image])
   end
 
   # GET /bodies/1
