@@ -1,4 +1,4 @@
-class AvatarsController < ApplicationController
+class AvatarsController < Api::ApplicationController
   before_action :set_avatar, only: [:update, :destroy]
   before_filter :authenticate_user!
   # POST /avatars

@@ -1,4 +1,4 @@
-class HeadsController < ApplicationController
+class HeadsController < Api::ApplicationController
   before_action :set_head, only: [:show, :edit, :update, :destroy]
 
   # GET /heads

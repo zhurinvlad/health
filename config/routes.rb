@@ -8,9 +8,9 @@ Rails.application.routes.draw do
     # They act on a singular user (the signed in user)
     # Add the actions you want in 'only:'
     
-    resource :avatar, only: [:create, :update, :destroy]
-    resources :bodies, only: [:index]
-    resources :heads, only: [:index]
+    resource :avatar #, only: [:create, :update, :destroy]
+    resources :bodies #, only: [:index]
+    resources :heads #, only: [:index]
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

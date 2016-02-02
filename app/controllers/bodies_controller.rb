@@ -1,4 +1,4 @@
-class BodiesController < ApplicationController
+class BodiesController < Api::ApplicationController
   before_action :set_body, only: [:show, :edit, :update, :destroy]
 
   # GET /bodies
