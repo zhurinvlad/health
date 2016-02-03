@@ -12,7 +12,7 @@ ActiveAdmin.register User do
 #   permitted
 # end
 
-  permit_params :email, :password, :password_confirmation, :weight, :rating, :growth, :avatar
+  permit_params :email, :password, :password_confirmation, :weight, :rating, :growth, :avatar_id
 
   index do
     selectable_column
