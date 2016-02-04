@@ -4,35 +4,55 @@ RSpec.describe BodiesController, type: :routing do
   describe "routing" do
 
     it "routes to #index" do
-      expect(:get => "/bodies").to route_to("bodies#index")
+      expect(:get => "/api/v1/bodies").to route_to("bodies#index")
     end
+
+
+
 
     it "routes to #new" do
-      expect(:get => "/bodies/new").to route_to("bodies#new")
-    end
-
-    it "routes to #show" do
-      expect(:get => "/bodies/1").to route_to("bodies#show", :id => "1")
-    end
-
-    it "routes to #edit" do
-      expect(:get => "/bodies/1/edit").to route_to("bodies#edit", :id => "1")
+      expect(:get => "/api/v1/bodies/new").not_to be_routable
     end
 
     it "routes to #create" do
-      expect(:post => "/bodies").to route_to("bodies#create")
+      expect(:post => "/api/v1/bodies").not_to be_routable
+    end
+
+
+    it "routes to #show1" do
+      expect(:get => "/api/v1/bodies/1").not_to be_routable
+    end
+
+    it "routes to #edit1" do
+      expect(:get => "/api/v1/bodies/1/edit").not_to be_routable
+    end
+
+    it "routes to #update via PUT1" do
+      expect(:put => "/api/v1/bodies/1").not_to be_routable
+    end
+
+    it "routes to #update via PATCH1" do
+      expect(:patch => "/api/v1/bodies/1").not_to be_routable
+    end
+
+    it "routes to #destroy1" do
+      expect(:delete => "/api/v1/bodies/1").not_to be_routable
+    end
+
+    it "routes to #edit" do
+      expect(:get => "/api/v1/bodies/edit").not_to be_routable
     end
 
     it "routes to #update via PUT" do
-      expect(:put => "/bodies/1").to route_to("bodies#update", :id => "1")
+      expect(:put => "/api/v1/bodies").not_to be_routable
     end
 
     it "routes to #update via PATCH" do
-      expect(:patch => "/bodies/1").to route_to("bodies#update", :id => "1")
+      expect(:patch => "/api/v1/bodies").not_to be_routable
     end
 
     it "routes to #destroy" do
-      expect(:delete => "/bodies/1").to route_to("bodies#destroy", :id => "1")
+      expect(:delete => "/api/v1/bodies").not_to be_routable
     end
 
   end
