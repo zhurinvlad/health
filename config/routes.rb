@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resource :avatar , only: [:create, :update, :destroy]
     resources :bodies , only: [:index]
     resources :heads , only: [:index]
+    resources :action_types, only: [:index]
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
